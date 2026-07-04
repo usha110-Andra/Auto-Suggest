@@ -2,9 +2,10 @@
   "name": "auto-suggest",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +18,5 @@
   "bugs": {
     "url": "https://github.com/usha110-Andra/Auto-Suggest/issues"
   },
-  "homepage": "https://github.com/usha110-Andra/Auto-Suggest#readme",
-  "dependencies": {
-    "express": "^5.2.1"
-  }
+  "homepage": "https://github.com/usha110-Andra/Auto-Suggest#readme"
 }
