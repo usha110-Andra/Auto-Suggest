@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Career Guidance System</title>
+<link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Smart Career + Internship + Study Planner</h1>
+</header>
+
+<div class="container">
+
+    <input type="text" id="name" placeholder="Enter Your Name">
+
+    <select id="type">
+        <option value="">Select Category</option>
+        <option value="student">Engineering Student</option>
+        <option value="graduate">Graduate (Fresher)</option>
+    </select>
+
+    <select id="branch">
+        <option value="">Select Branch</option>
+        <option value="cse">CSE / IT</option>
+        <option value="ece">ECE</option>
+        <option value="eee">EEE</option>
+        <option value="mech">Mechanical</option>
+        <option value="civil">Civil</option>
+    </select>
+
+    <select id="year">
+        <option value="">Select Year</option>
+        <option value="1">1st Year</option>
+        <option value="2">2nd Year</option>
+        <option value="3">3rd Year</option>
+        <option value="4">Final Year</option>
+    </select>
+
+    <select id="interest">
+        <option value="">Select Interest</option>
+        <option value="web">Web Development</option>
+        <option value="ai">AI / ML</option>
+        <option value="data">Data Science</option>
+        <option value="cyber">Cyber Security</option>
+        <option value="core">Core Engineering</option>
+        <option value="govt">Government Jobs</option>
+    </select>
+
+    <select id="hours">
+        <option value="">Daily Study Hours</option>
+        <option value="2">2 Hours</option>
+        <option value="3">3 Hours</option>
+        <option value="4">4 Hours</option>
+        <option value="5">5+ Hours</option>
+    </select>
+
+    <button onclick="generatePlan()">Generate Plan</button>
+
+    <div class="card" id="result"></div>
+
+</div>
+
+<script src="script1.js"></script>
+</body>
+</html>

@@ -28,108 +28,63 @@
             One million phrases. Four algorithms. Prefix Based Auto Suggest.
         </p>
 
-        <div class="search-box">
+        <div class="search-box" id="search-box">
             <span class="icon">&#128269;</span>
-
             <input
                 type="text"
                 id="search"
-                placeholder="Start typing to search phrases..."
-                autocomplete="off">
+                placeholder="Start typing to search phrases"
+            >
         </div>
 
-        <div id="suggestions-box"></div>
+        <div id="suggestions-box">
+            <!-- Suggestions will appear here -->
+        </div>
 
     </fieldset>
 
     <p class="footer">
         Copyright &copy; Being Infinity Pvt. Ltd.
     </p>
+    <script>
+        var searchBox = document.getElementById("search-box");
+        
 
-<script>
 
-var searchInput = document.getElementById("search");
-var suggestionsBox = document.getElementById("suggestions-box");
-var timeBox = document.querySelector(".time");
+        searchBox.addEventListener("input", function() {
 
-searchInput.addEventListener("input", function(){
+            // 1. get user typed text
+            var userInput = searchBox.value;
+            if(userInput.trim()===""){
 
-    var userInput = searchInput.value.trim();
+            }else{
+                var url1="https://autosuggest-backend.onrender.com/api/autosuggest?q=";
+                var url2="&algorithm=brute&limit=10&weighted=false";
+                var url=url1+userInput+url2;
 
-    if(userInput==""){
-        suggestionsBox.innerHTML="";
-        timeBox.innerHTML="○ - ms";
-        return;
-    }
-
-    var start = performance.now();
-
-    var url =
-    "https://autosuggest-backend.onrender.com/api/autosuggest?q="
-    + encodeURIComponent(userInput)
-    + "&algorithm=brute&limit=10&weighted=false";
-
-    fetch(url)
-
-    .then(function(response){
-        return response.json();
-    })
-
-    .then(function(data){
-
-        console.log(data);
-
-        var end = performance.now();
-        timeBox.innerHTML = Math.round(end-start)+" ms";
-
-        var list = data.results || data.suggestions || [];
-
-        var html="";
-
-        if(list.length==0){
-
-            html="<div class='suggestion'>No Suggestions Found</div>";
-
-        }
-
-        else{
-
-            for(var i=0;i<list.length;i++){
-
-                html += "<div class='suggestion'>"+list[i]+"</div>";
 
             }
+            // 2. make UPI call to get suggestion
 
-        }
-
-        suggestionsBox.innerHTML=html;
-
-        var suggestions=document.querySelectorAll(".suggestion");
-
-        for(var i=0;i<suggestions.length;i++){
-
-            suggestions[i].onclick=function(){
-
-                searchInput.value=this.innerHTML;
-                suggestionsBox.innerHTML="";
-
-            };
-
-        }
-
-    })
-
-    .catch(function(error){
-
-        console.log(error);
-
-        suggestionsBox.innerHTML="<div class='suggestion'>Unable to connect to server</div>";
-
-    });
-
-});
-
-</script>
+            fetch(url)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                
+                console.log(data);
+                var resultsArray = data.results;
+                var htmlresults = "";
+                for(var i=0;i<resultsArray.length;i++){
+                    htmlresults += "<div>" + resultsArray[i] + "</div>"
+                }
+                //var suggestionsBox = document.getElementById("suggestions-box");
+                suggestionsBox.innerHTML = htmlresults;
+            })
+            //display data in html
+        });
+    
+    </script>
 
 </body>
 </html>
